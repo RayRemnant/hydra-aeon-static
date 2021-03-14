@@ -1,0 +1,43 @@
+{
+  "name": "hydra-aeon",
+  "description": "",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "sapper dev",
+    "build": "sapper build --legacy",
+    "export": "sapper export --legacy --entry \"/ /404\" --timeout 30000 --host www.omni-atlas.com",
+    "postexport": "mv __sapper__/export/404/index.html __sapper__/export/404.html && css-minify -d static/ -o __sapper__/export/ && rm __sapper__/export/global.css && mv __sapper__/export/global.min.css __sapper__/export/global.css",
+    "start": "node __sapper__/build",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test": "run-p --race dev cy:run"
+  },
+  "dependencies": {
+    "compression": "^1.7.1",
+    "polka": "next",
+    "sirv": "^1.0.10",
+    "svelte-i18n": "^3.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/runtime": "^7.12.5",
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-replace": "^2.3.4",
+    "@rollup/plugin-url": "^5.0.1",
+    "css-minify": "^1.1.0",
+    "rollup": "^2.36.1",
+    "rollup-plugin-modify": "^3.0.0",
+    "rollup-plugin-string-replacer": "^1.0.2",
+    "rollup-plugin-svelte": "^6.1.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "sapper": "^0.28.10",
+    "svelte": "^3.31.2",
+    "svelte-preprocess": "^4.6.1"
+  }
+}

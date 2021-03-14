@@ -1,0 +1,83 @@
+<script context="module">
+	import neoFetch from "neoFetch";
+	import errorFetch from "errorFetch";
+	export async function preload({ path, params }, session) {
+		//console.log(process.browser);
+
+		const { language, region } = params;
+
+		try {
+			var data = await neoFetch(this.fetch, path);
+		} catch (e) {
+			return errorFetch(this, e);
+		}
+
+		return { language, region, ...data };
+	}
+	import Meta from "Meta";
+	import BuyingGuides from "BuyingGuides";
+</script>
+
+<script>
+	export let language, region, meta, hreflangs, categories;
+	meta.title = meta.title || "Blog | Omni Atlas";
+</script>
+
+<Meta {...meta} {hreflangs} />
+
+<h1>Blog</h1>
+
+{#if categories != undefined}
+	{#each categories as category}
+		<article class="blog-category">
+			<h1>
+				<a href="{language}-{region}/blog/{category.slug}/" rel="prefetch">
+					{category.title}</a
+				>
+				<hr />
+			</h1>
+
+			<BuyingGuides {language} {region} {...category.buyingGuides} />
+		</article>
+	{/each}
+{/if}
+
+<style>
+	:global(.blog-category) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		box-sizing: border-box;
+		width: 100%;
+		border-radius: 1rem;
+		padding: 1rem;
+		margin-bottom: 2.5rem;
+	}
+
+	:global(.blog-category h1 a) {
+		display: block;
+		padding-bottom: 0.75rem;
+
+		text-decoration: none;
+	}
+
+	:global(.blog-category h1 hr) {
+		width: 44%;
+		margin: auto;
+	}
+
+	:global(.blog-category h1) {
+		width: 100%;
+		font-size: 2.25rem;
+		text-align: center;
+	}
+
+	:global(.dark .blog-category) {
+		background-color: #333;
+	}
+
+	:global(.light .blog-category) {
+		background-color: #eee;
+	}
+</style>

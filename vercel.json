@@ -1,0 +1,7 @@
+{
+	"trailingSlash": true,
+	"redirects": [
+		{ "source": "/it-it/story/", "destination": "/it-it/storia/" },
+		{ "source": "/it-it/credits/", "destination": "/it-it/crediti/" }
+	   ]
+   }
