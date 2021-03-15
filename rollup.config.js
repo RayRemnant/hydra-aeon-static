@@ -149,7 +149,7 @@ export default {
 			}),
 			svelte({
 				dev,
-				hydratable: true,
+				hydratable: false,
 				emitCss: true,
 				preprocess: preprocess({
 					babel: {
@@ -222,7 +222,7 @@ export default {
 			}),
 			svelte({
 				generate: "ssr",
-				hydratable: true,
+				hydratable: false,
 				dev,
 				emitCss: true,
 				preprocess: preprocess({
