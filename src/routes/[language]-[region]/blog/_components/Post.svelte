@@ -3,11 +3,7 @@
 
 	let post = data;
 
-	post.time.modified = new Date(
-		timestamp
-	).toISOString() /* .substring(0, 19) + "Z" */;
-
-	const { timeZone } = Intl.DateTimeFormat().resolvedOptions() || undefined;
+	post.time.modified = new Date(timestamp).toISOString().substring(0, 19) + "Z";
 
 	import { schema } from "schema";
 	$: {
@@ -47,18 +43,25 @@
 	› <a rel="preload" href="{language}-{region}/blog/{slug}/">{post.title}</a>
 </nav>
 
+<svelte:head>
+	<script src="/blogTimeUpdated.js"></script>
+</svelte:head>
+
 <article class="text">
 	<h1>{post.title}</h1>
-	<p class="time-updated">
-		{$_("updated on")}
-		{new Intl.DateTimeFormat(`${language}-${region}`, {
-			hour: "numeric",
-			minute: "numeric",
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-			timeZone,
-		}).format(Date.parse(post.time.modified))}
+	<p id="time-updated">
+		<span>{$_(`updated on`)}</span>
+		<time datetime={post.time.modified}>
+			{new Intl.DateTimeFormat(`${language}-${region}`, {
+				hour: "numeric",
+				minute: "numeric",
+				year: "numeric",
+				month: "long",
+				day: "numeric",
+				timeZone: "UTC",
+				timeZoneName: "short",
+			}).format(Date.parse(post.time.modified))}</time
+		>
 	</p>
 	{#each post.content as box, i}
 		{#if box.html == undefined}
