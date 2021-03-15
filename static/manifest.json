@@ -1,0 +1,22 @@
+{
+	"background_color": "#ffffff",
+	"theme_color": "#111",
+	"name": "Omni Atlas",
+	"short_name": "Omni Atlas",
+	"display": "fullscreen",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "https://media.omni-atlas.com/file/situla/static/omni-atlas-logo.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "https://media.omni-atlas.com/file/situla/static/omni-atlas-logo-maskable.png",
+			"sizes": "256x256",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	]
+}

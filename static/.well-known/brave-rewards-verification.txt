@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: omni-atlas.com
+Token: 668b37d976da6cb55126b7b82d78f28dda81b5e690531a62678bf1e86f34e222
