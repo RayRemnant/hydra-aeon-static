@@ -4,7 +4,7 @@
 	const { mediaHost } = $session;
 	const mediaHostUrl = `https://${mediaHost.cdn}/${mediaHost.directory}/${mediaHost.bucket}/`;
 
-	export let classes = "",
+	export let classes = undefined,
 		width = undefined,
 		height = undefined,
 		alt,
@@ -21,15 +21,34 @@
 </script>
 
 <figure>
-	<picture
-		class={classes}
-		style="{width ? `width:${width}px;` : ''}{height ? `height:${height}px;` : ''}"
-	>
-		{#each types.reverse() as type}
-			<source srcset="{directory}{name}.{type}" type="image/{type == 'jpg' ? 'jpeg' : type}" />
-		{/each}
-		<img {loading} src="{directory}{name}.{types[0]}" {alt} />
-	</picture>
+	{#if classes}
+		<picture
+			class={classes}
+			style="{width ? `width:${width}px;` : ''}{height
+				? `height:${height}px;`
+				: ''}"
+			>{#each types.reverse() as type}
+				<source
+					srcset="{directory}{name}.{type}"
+					type="image/{type == 'jpg' ? 'jpeg' : type}"
+				/>
+			{/each}
+			<img {loading} src="{directory}{name}.{types[0]}" {alt} />
+		</picture>
+	{:else}
+		<picture
+			style="{width ? `width:${width}px;` : ''}{height
+				? `height:${height}px;`
+				: ''}"
+			>{#each types.reverse() as type}
+				<source
+					srcset="{directory}{name}.{type}"
+					type="image/{type == 'jpg' ? 'jpeg' : type}"
+				/>
+			{/each}
+			<img {loading} src="{directory}{name}.{types[0]}" {alt} />
+		</picture>
+	{/if}
 </figure>
 
 <style>
