@@ -58,7 +58,7 @@
 		color: var(--accent-color_3);
 	}
 
-	:global(.text .time-updated) {
+	:global(.text #time-updated) {
 		text-align: center;
 		font-size: 1rem;
 	}
