@@ -28,9 +28,9 @@
 	</span>
 </div>
 
-<div class="theme-button">
+<!-- <div class="theme-button">
 	<ThemeButton />
-</div>
+</div> -->
 
 {#if menu != undefined}
 	<nav>
