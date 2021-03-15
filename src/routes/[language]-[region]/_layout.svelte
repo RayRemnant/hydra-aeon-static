@@ -12,7 +12,11 @@
 			region = "it";
 		}
 
-		if (!path.includes(".") && path.charAt(path.length - 1) != "/" && path.length > 1) {
+		if (
+			!path.includes(".") &&
+			path.charAt(path.length - 1) != "/" &&
+			path.length > 1
+		) {
 			console.log("redirecting...");
 			this.redirect(301, path + "/");
 		}
@@ -20,7 +24,10 @@
 		try {
 			//TO-DO: provide less data when languages become a lot
 			/* 	var { languages } = await neoFetch(this.fetch, "/languages"); */
-			var { menu } = await neoFetch(this.fetch, `/${language}-${region}/menu/footer`);
+			var { menu } = await neoFetch(
+				this.fetch,
+				`/${language}-${region}/menu/footer`
+			);
 		} catch (e) {
 			return errorFetch(this, e);
 		}
