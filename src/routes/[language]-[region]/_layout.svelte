@@ -64,18 +64,18 @@
 	<meta property="og:locale" content="{language}_{region.toUpperCase()}" />
 </svelte:head>
 
-<header class="{$theme} {segment}">
+<header class={segment}>
 	<Header {segment} {language} {region} />
 </header>
 
-<main class="{$theme} {segment}">
+<main class={segment}>
 	<slot />
 </main>
 
-<footer class="{$theme} {segment}">
+<footer class={segment}>
 	<Footer {language} {region} {menu} />
 </footer>
 
-<FixedBottom {theme} />
+<FixedBottom />
 
 <Schema {segment} />
