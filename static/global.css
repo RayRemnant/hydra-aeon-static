@@ -257,6 +257,10 @@ a {
 	outline: none;
 }
 
+abbr {
+	cursor: help;
+}
+
 .text-align-center {
 	text-align: center;
 }
@@ -343,6 +347,34 @@ a {
 	.text p,
 	.text ul {
 		font-size: 1.1rem;
+	}
+
+	abbr[title] {
+		position: relative;
+
+		/* ensure consistent styling across browsers */
+		text-decoration: underline dotted;
+	}
+
+	abbr[title]:hover::after,
+	abbr[title]:focus::after {
+		content: attr(title);
+
+		/* position tooltip like the native one */
+		position: absolute;
+		left: 0;
+		bottom: -2em;
+		width: auto;
+		white-space: nowrap;
+
+		/* style tooltip */
+		background-color: #222;
+		color: #eee;
+		border-radius: 3px;
+		font-size: 1.15em;
+		padding: 0.1em 0.25em;
+		border: solid #eee 1px;
+		z-index: 10;
 	}
 }
 
