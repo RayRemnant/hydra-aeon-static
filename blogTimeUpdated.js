@@ -36,5 +36,8 @@ window.addEventListener("load", function () {
 		style: "long", // other values: "short" or "narrow"
 	});
 
-	timeElement.innerHTML += `  ~ ${rtf.format(timeDiff, format)}`;
+	timeElement.innerHTML += `<span style="white-space:nowrap"> ~ ${rtf.format(
+		timeDiff,
+		format
+	)}</span>`;
 });
