@@ -1,7 +1,3 @@
-<script>
-	export let theme;
-</script>
-
 <div class="fixed-bottom" />
 
 <style>
