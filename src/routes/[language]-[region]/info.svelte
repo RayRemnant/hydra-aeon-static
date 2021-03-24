@@ -1,11 +1,11 @@
 <script context="module">
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
-	export async function preload({ path, params }) {
-		const { language, region } = params;
+	export async function preload(page) {
+		const { language, region } = page.params;
 
 		try {
-			var data = await neoFetch(this.fetch, path);
+			var data = await neoFetch(this.fetch, page);
 			//console.log(data);
 		} catch (e) {
 			console.log(e);
@@ -28,7 +28,11 @@
 <nav>
 	<ul>
 		{#each children as child}
-			<li><a rel="prefetch" href="{language}-{region}/{child.slug}/">{child.name}</a></li>
+			<li>
+				<a rel="prefetch" href="{language}-{region}/{child.slug}/"
+					>{child.name}</a
+				>
+			</li>
 		{/each}
 	</ul>
 </nav>

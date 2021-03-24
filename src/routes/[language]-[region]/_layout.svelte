@@ -2,8 +2,8 @@
 	import { setupI18n } from "i18n";
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
-	export async function preload({ path, params }) {
-		let { language, region } = params;
+	export async function preload(page) {
+		let { language, region } = page.params;
 		setupI18n({ withLocale: language });
 
 		/* if (path == "/") {
@@ -26,6 +26,7 @@
 			/* 	var { languages } = await neoFetch(this.fetch, "/languages"); */
 			var { menu } = await neoFetch(
 				this.fetch,
+				page,
 				`/${language}-${region}/menu/footer`
 			);
 		} catch (e) {

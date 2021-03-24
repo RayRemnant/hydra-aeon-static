@@ -2,11 +2,9 @@
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
 	import { languages } from "store";
-	export async function preload({ host }) {
-		process.env.HOST = host;
-
+	export async function preload(page) {
 		try {
-			languages.set(await neoFetch(this.fetch, "/languages"));
+			languages.set(await neoFetch(this.fetch, page, "/languages"));
 		} catch (e) {
 			return errorFetch(this, e);
 		}

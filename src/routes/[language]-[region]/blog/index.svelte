@@ -1,13 +1,13 @@
 <script context="module">
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
-	export async function preload({ path, params }, session) {
+	export async function preload(page, session) {
 		//console.log(process.browser);
 
-		const { language, region } = params;
+		const { language, region } = page.params;
 
 		try {
-			var data = await neoFetch(this.fetch, path);
+			var data = await neoFetch(this.fetch, page);
 		} catch (e) {
 			return errorFetch(this, e);
 		}

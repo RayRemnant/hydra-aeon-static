@@ -1,10 +1,10 @@
 <script context="module">
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
-	export async function preload({ path, params }, session) {
-		const { slug } = params;
+	export async function preload(page) {
+		const { slug } = page.params;
 		try {
-			var data = await neoFetch(this.fetch, path);
+			var data = await neoFetch(this.fetch, page);
 			//console.log(data);
 		} catch (e) {
 			console.log(e);
