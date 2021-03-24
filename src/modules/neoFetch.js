@@ -24,7 +24,7 @@ export default async (
 			)
 			.replace(/<PATH>/gi, path + "/")
 			.replace(
-				/<BLOG>|&lt;BLOG&lt;/gi,
+				/<BLOG>|&lt;BLOG&gt;|http:\/\/<BLOG>|http:\/\/&lt;BLOG&gt;/gi,
 				"https://" + host + `/${language}-${region}/blog/`
 			);
 
