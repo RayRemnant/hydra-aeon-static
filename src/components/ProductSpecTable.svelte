@@ -24,40 +24,6 @@
 
 <table class="specs">
 	<tbody>
-		{#if product.type == "SSD"}
-			<tr>
-				<th>{$_("interface").capitalize()}</th>
-				<th>{$_("sequential read").capitalize()}</th>
-				<th>{$_("sequential write").capitalize()}</th>
-				<th>{$_("warranty").capitalize()}</th>
-			</tr>
-			<tr>
-				<td>
-					{@html specs.interface}
-				</td>
-				<td>
-					{@html specs["sequential read"] +
-						" <abbr title='" +
-						$_("megabytes").capitalize() +
-						" " +
-						$_("per second") +
-						"'>MB/s</abbr>"}
-				</td>
-
-				<td>
-					{@html specs["sequential write"] +
-						" <abbr title='" +
-						$_("megabytes").capitalize() +
-						" " +
-						$_("per second") +
-						"'>MB/s</abbr>"}
-				</td>
-
-				<td>
-					{@html warrantyText}
-				</td>
-			</tr>
-		{/if}
 		{#if product.type == "CPU"}
 			<tr>
 				<th>Core</th>
@@ -187,6 +153,92 @@
 					{/if}
 				</td>
 			</tr>
+		{/if}
+		{#if product.type == "SSD"}
+			<tr>
+				<th>{$_("interface").capitalize()}</th>
+				<th>{$_("sequential read").capitalize()}</th>
+				<th>{$_("sequential write").capitalize()}</th>
+				<th>{$_("warranty").capitalize()}</th>
+			</tr>
+			<tr>
+				<td>
+					{@html specs.interface}
+				</td>
+				<td>
+					{@html specs["sequential read"] +
+						" <abbr title='" +
+						$_("megabytes").capitalize() +
+						" " +
+						$_("per second") +
+						"'>MB/s</abbr>"}
+				</td>
+
+				<td>
+					{@html specs["sequential write"] +
+						" <abbr title='" +
+						$_("megabytes").capitalize() +
+						" " +
+						$_("per second") +
+						"'>MB/s</abbr>"}
+				</td>
+
+				<td>
+					{@html warrantyText}
+				</td>
+			</tr>
+		{/if}
+		{#if product.type == "HDD"}
+			{#if specs.format == "portable"}
+				<tr>
+					<th>{$_("dimensions").capitalize()}</th>
+					<th>{$_("ports").capitalize()}</th>
+					<th>{$_("warranty").capitalize()}</th>
+				</tr>
+				<tr>
+					<td>
+						{product.properties.dimensions.length} × {product.properties
+							.dimensions.width} × {product.properties.dimensions.depth}
+						<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+					</td>
+					<td>
+						{#each specs.ports as port}
+							{port.name}
+							{port.revision ? port.revision.toFixed(1) : ""}
+							{port.type}
+						{/each}
+					</td>
+					<td>
+						{@html warrantyText}
+					</td>
+				</tr>
+			{:else}
+				<tr>
+					<th>{$_("form factor").capitalize()}</th>
+					<th
+						><abbr title={$_("revolutions per minute").capitalize()}>RPM</abbr
+						></th
+					>
+					<th>Cache</th><th>{$_("warranty").capitalize()}</th>
+				</tr>
+				<tr>
+					<td>
+						{@html specs["form factor"] + " " + specs.interface}
+					</td>
+					<td>
+						{@html specs.RPM}
+					</td>
+
+					<td>
+						{@html specs.cache}
+						<abbr title={$_("megabytes").capitalize()}>MB</abbr>
+					</td>
+
+					<td>
+						{@html warrantyText}
+					</td>
+				</tr>
+			{/if}
 		{/if}
 	</tbody>
 </table>
