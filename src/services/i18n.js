@@ -52,6 +52,11 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			connectivity: "connettività",
 			"under construction": "in costruzione",
 			"updated on": "aggiornato al",
+			"revolutions per minute": "rotazioni per minuto",
+			dimensions: "dimensioni",
+			ports: "porte",
+			millimeters: "millimetri",
+			mm: "mm",
 		},
 	});
 	locale.set(_locale);
