@@ -256,21 +256,4 @@ export default {
 		preserveEntrySignatures: "strict",
 		onwarn,
 	},
-
-	serviceworker: {
-		input: config.serviceworker.input(),
-		output: config.serviceworker.output(),
-		plugins: [
-			resolve(),
-			replace({
-				"process.browser": true,
-				...replaces,
-			}),
-			commonjs(),
-			!dev && terser(),
-		],
-
-		preserveEntrySignatures: false,
-		onwarn,
-	},
 };

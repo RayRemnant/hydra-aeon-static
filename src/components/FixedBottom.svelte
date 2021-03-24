@@ -2,6 +2,8 @@
 	export let theme;
 </script>
 
+<div class="fixed-bottom" />
+
 <style>
 	:global(.fixed-bottom) {
 		position: fixed;
@@ -39,5 +41,3 @@
 		}
 	}
 </style>
-
-<div class="{$theme} fixed-bottom" />
