@@ -108,6 +108,7 @@
 	:global(.home-category ul) {
 		display: flex;
 		justify-content: center;
+		flex-wrap: wrap;
 
 		margin-bottom: 2rem;
 	}
@@ -115,6 +116,7 @@
 	:global(.home-category li) {
 		list-style-type: none;
 		margin: 0.5rem;
+		white-space: nowrap;
 	}
 
 	:global(.home-category li a) {
