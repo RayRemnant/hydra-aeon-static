@@ -2,15 +2,8 @@
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
 	import { languages } from "store";
-	export async function preload({ path }) {
-		if (path.includes("/data/")) {
-			return {};
-		}
-
-		//Netlify automatically redirects stuff
-		/* if (path.includes("//")) {
-			this.redirect(301, path.replace(/\/+/gi, "/"));
-		} */
+	export async function preload({ host }) {
+		process.env.HOST = host;
 
 		try {
 			languages.set(await neoFetch(this.fetch, "/languages"));

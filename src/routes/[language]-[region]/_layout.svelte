@@ -6,7 +6,7 @@
 		let { language, region } = params;
 		setupI18n({ withLocale: language });
 
-		if (path == "/") {
+		/* if (path == "/") {
 			console.log("PATH IS /");
 			language = "en";
 			region = "it";
@@ -19,7 +19,7 @@
 		) {
 			console.log("redirecting...");
 			this.redirect(301, path + "/");
-		}
+		} */
 
 		try {
 			//TO-DO: provide less data when languages become a lot
