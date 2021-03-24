@@ -87,26 +87,14 @@ const aliasEntries = [
 	},
 ];
 
-let clientAlias = alias({
+let aliasReplaces = alias({
 	resolve: [".js", ".svelte"],
 	entries: [
 		...aliasEntries,
 		{
 			find: "neoFetch",
 			replacement:
-				`${__dirname}/src/modules/` + (dev ? "devFetch.js" : "clientFetch.js"),
-		},
-	],
-});
-
-let serverAlias = alias({
-	resolve: [".js", ".svelte"],
-	entries: [
-		...aliasEntries,
-		{
-			find: "neoFetch",
-			replacement:
-				`${__dirname}/src/modules/` + (dev ? "devFetch.js" : "serverFetch.js"),
+				`${__dirname}/src/modules/` + (dev ? "devFetch.js" : "devFetch.js"),
 		},
 	],
 });
@@ -142,8 +130,9 @@ export default {
 		input: config.client.input(),
 		output: config.client.output(),
 		plugins: [
-			clientAlias,
+			aliasReplaces,
 			replace({
+				preventAssignment: true,
 				"process.browser": true,
 				...replaces,
 			}),
@@ -215,8 +204,9 @@ export default {
 		output: config.server.output(),
 		plugins: [
 			//json(),
-			serverAlias,
+			aliasReplaces,
 			replace({
+				preventAssignment: true,
 				"process.browser": false,
 				...replaces,
 			}),
