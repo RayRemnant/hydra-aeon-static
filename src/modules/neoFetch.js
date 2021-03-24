@@ -30,7 +30,8 @@ export default async (fetch, routePath) => {
 				toReplace,
 				process.env.MEDIA_HOST_CDN + "/" + process.env.MEDIA_HOST_DIRECTORY
 			)
-			.replace(/<PATH>/gi, routePath + "/");
+			.replace(/<PATH>/gi, routePath + "/")
+			.replace(/<BLOG>/gi, process.env.HOST + "/");
 
 		return JSON.parse(data);
 	}
