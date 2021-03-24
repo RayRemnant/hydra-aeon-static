@@ -21,6 +21,10 @@ const onwarn = (warning, onwarn) =>
 
 const aliasEntries = [
 	{
+		find: "neoFetch",
+		replacement: `${__dirname}/src/modules/neoFetch.js`,
+	},
+	{
 		find: "errorFetch",
 		replacement: `${__dirname}/src/modules/errorFetch.js`,
 	},
@@ -89,14 +93,7 @@ const aliasEntries = [
 
 let aliasReplaces = alias({
 	resolve: [".js", ".svelte"],
-	entries: [
-		...aliasEntries,
-		{
-			find: "neoFetch",
-			replacement:
-				`${__dirname}/src/modules/` + (dev ? "devFetch.js" : "devFetch.js"),
-		},
-	],
+	entries: [...aliasEntries],
 });
 
 const replaces = {
