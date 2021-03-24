@@ -9,6 +9,11 @@ export default async (fetch, routePath) => {
 		throw e;
 	} */
 
+	/* I don't remember what's that for
+	if (routePath.charAt(routePath.length - 1) == "/") {
+		routePath = routePath.substring(0, routePath.length - 1);
+	} */
+
 	let res = await fetch(`${process.env.SERVER_API}/cms${routePath}`, {
 		headers: {
 			Authorization: process.env.SERVER_API_AUTH,
