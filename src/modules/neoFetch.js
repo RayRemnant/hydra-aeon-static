@@ -1,20 +1,12 @@
-export default async (fetch, routePath) => {
-	/* if (routePath.charAt(routePath.length - 1) == "/") {
-		let e = new Error();
-		e.name = "REDIRECT";
-		e.status = 301;
-		e.url = routePath.substring(0, routePath.length - 1);
-		//console.log(e.url);
-		//TO-DO: move it to a more global solution. maybe Netlify will solve this?
-		throw e;
-	} */
+export default async (
+	fetch,
+	{ host, params, path },
+	staticPath = undefined
+) => {
+	const { language, region } = params;
+	path = staticPath || path;
 
-	/* I don't remember what's that for
-	if (routePath.charAt(routePath.length - 1) == "/") {
-		routePath = routePath.substring(0, routePath.length - 1);
-	} */
-
-	let res = await fetch(`${process.env.SERVER_API}/cms${routePath}`, {
+	let res = await fetch(`${process.env.SERVER_API}/cms${path}`, {
 		headers: {
 			Authorization: process.env.SERVER_API_AUTH,
 		},
@@ -30,14 +22,17 @@ export default async (fetch, routePath) => {
 				toReplace,
 				process.env.MEDIA_HOST_CDN + "/" + process.env.MEDIA_HOST_DIRECTORY
 			)
-			.replace(/<PATH>/gi, routePath + "/")
-			.replace(/<BLOG>/gi, process.env.HOST + "/");
+			.replace(/<PATH>/gi, path + "/")
+			.replace(
+				/<BLOG>|&lt;BLOG&lt;/gi,
+				"https://" + host + `/${language}-${region}/blog/`
+			);
 
 		return JSON.parse(data);
 	}
 
 	console.log("FETCH FAIL");
-	let e = new Error(`${process.env.SERVER_API}/cms${routePath}`);
+	let e = new Error(`${process.env.SERVER_API}/cms${path}`);
 	e.name = "NOT FOUND";
 	e.status = 404;
 	console.log(e);
