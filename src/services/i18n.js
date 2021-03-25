@@ -57,6 +57,7 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			ports: "porte",
 			millimeters: "millimetri",
 			mm: "mm",
+			"coming soon": "prossimamente",
 		},
 	});
 	locale.set(_locale);
