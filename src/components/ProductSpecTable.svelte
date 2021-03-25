@@ -240,6 +240,28 @@
 				</tr>
 			{/if}
 		{/if}
+		{#if product.type == "PSU"}
+			<tr>
+				<th>Watt</th>
+				<th>{$_("modular").capitalize()}</th>
+				<th>{$_("efficiency").capitalize()}</th>
+				<th>{$_("warranty").capitalize()}</th>
+			</tr>
+			<tr>
+				<td>
+					{specs.watt}<abbr title="Watt">W</abbr>
+				</td>
+				<td>
+					{$_(specs.modular).capitalize()}
+				</td>
+				<td>
+					{specs.efficiency}
+				</td>
+				<td>
+					{@html warrantyText}
+				</td>
+			</tr>
+		{/if}
 	</tbody>
 </table>
 
