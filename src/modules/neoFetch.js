@@ -22,7 +22,7 @@ export default async (
 				toReplace,
 				process.env.MEDIA_HOST_CDN + "/" + process.env.MEDIA_HOST_DIRECTORY
 			)
-			.replace(/<PATH>/gi, path + "/")
+			.replace(/<PATH>/gi, path)
 			.replace(
 				/http:\/\/<BLOG>|http:\/\/&lt;BLOG&gt;|<BLOG>|&lt;BLOG&gt;/gi,
 				"https://" + host + `/${language}-${region}/blog/`
