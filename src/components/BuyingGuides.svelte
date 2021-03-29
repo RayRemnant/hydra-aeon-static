@@ -1,23 +1,33 @@
 <script>
-	export let language, region, title, cardinal, posts;
+	export let language,
+		region,
+		title,
+		cardinal = {},
+		posts;
+
+	import { _ } from "svelte-i18n";
 	import Figure from "Figure";
 </script>
 
 <article class="buying-guides">
-	<h2>{title}</h2>
-	<article>
-		<a href="{language}-{region}/blog/{cardinal.slug}/" rel="prefetch">
-			<Figure
-				name={cardinal.image}
-				types={["jpg", "webp"]}
-				alt={cardinal.title}
-				width="360"
-				height="300"
-			/>
+	{#if Object.keys(cardinal).length > 0}
+		<h2>{title}</h2>
+		<article>
+			<a href="{language}-{region}/blog/{cardinal.slug}/" rel="prefetch">
+				<Figure
+					name={cardinal.image}
+					types={["jpg", "webp"]}
+					alt={cardinal.title}
+					width="360"
+					height="300"
+				/>
 
-			<h3>{cardinal.title}</h3></a
-		>
-	</article>
+				<h3>{cardinal.title}</h3></a
+			>
+		</article>
+	{:else}
+		{$_("coming soon").capitalize()}!
+	{/if}
 </article>
 
 <style>

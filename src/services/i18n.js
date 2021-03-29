@@ -59,6 +59,7 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			mm: "mm",
 			modular: "modulare",
 			efficiency: "efficienza",
+			"coming soon": "prossimamente"
 		},
 	});
 	locale.set(_locale);
