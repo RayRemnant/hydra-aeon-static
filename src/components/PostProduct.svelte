@@ -17,7 +17,10 @@
 
 <div class="product {product.type.toLowerCase()}">
 	<h3>
-		{(product.name.full + (product.name.capacity ? " " + product.name.capacity : "")).trim()}
+		{(
+			product.name.full +
+			(product.name.capacity ? " " + product.name.capacity : "")
+		).trim()}
 	</h3>
 
 	<Figure
@@ -39,17 +42,29 @@
 	{/if}
 
 	{#if !id}
-		<a href={shopLink} target="_blank" rel="noopener noreferrer" class="buy-button disabled"
+		<a
+			href={shopLink}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="buy-button disabled"
 			>{$_("not").capitalize()}
 			{$_("available")}
 		</a>
 	{:else if availability == 99}
-		<a href={shopLink} target="_blank" rel="noopener noreferrer" class="buy-button unavailable"
+		<a
+			href={shopLink}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="buy-button unavailable"
 			>{$_("not").capitalize()}
 			{$_("available")}
 		</a>
 	{:else}
-		<a href={shopLink} target="_blank" rel="noopener noreferrer" class="buy-button available"
+		<a
+			href={shopLink}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="buy-button available"
 			>{$_("buy").capitalize()}
 			{$_("on")}
 			{shopName.capitalize()}</a
@@ -103,9 +118,7 @@
 
 	@media (hover: none) {
 		:global(.product figure, .product picture) {
-			min-height: 175px;
-			max-height: 25vh;
-			max-width: 75%;
+			max-width: 95%;
 		}
 	}
 </style>

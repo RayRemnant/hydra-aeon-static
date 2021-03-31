@@ -59,6 +59,18 @@
 		margin-inline-end: 0;
 	}
 
+	:global(figure.alignright) {
+		float: right;
+		margin-left: 10px;
+		max-width: 50%;
+	}
+
+	:global(figure.alignleft) {
+		float: left;
+		margin-right: 10px;
+		max-width: 50%;
+	}
+
 	:global(picture) {
 		display: flex;
 
@@ -84,10 +96,27 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin: 1rem auto;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	:global(main picture, main img) {
 		border-radius: 1.5rem;
+	}
+
+	@media (max-width: 555px) {
+		:global(figure.alignleft, figure.alignright) {
+			float: none;
+			max-width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	@media (max-width: 1000px) {
+		:global(.text picture) {
+			min-height: 175px;
+			max-height: 25vh;
+		}
 	}
 </style>
