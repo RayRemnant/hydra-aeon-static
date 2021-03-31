@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "sapper export --legacy --entry \"/ /404\" --timeout 30000 --host www.omni-atlas.com",
+    "export": "sapper export --legacy --entry \"/ /404\" --timeout 90000 --host www.omni-atlas.com",
     "postexport": "mv __sapper__/export/404/index.html __sapper__/export/404.html && css-minify -d static/ -o __sapper__/export/ && rm __sapper__/export/global.css && mv __sapper__/export/global.min.css __sapper__/export/global.css",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
