@@ -59,7 +59,10 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			mm: "mm",
 			modular: "modulare",
 			efficiency: "efficienza",
-			"coming soon": "prossimamente"
+			"coming soon": "prossimamente",
+			fans: "ventole",
+			compatibility: "compatibilità",
+			radiator: "radiatore"
 		},
 	});
 	locale.set(_locale);
