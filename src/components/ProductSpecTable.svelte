@@ -262,6 +262,73 @@
 				</td>
 			</tr>
 		{/if}
+		{#if product.type == "CPU Air Cooler"}
+			<tr>
+				<th>{$_("dimensions").capitalize()}</th>
+				<th>{$_("fans").capitalize()}</th>
+				<th>{$_("compatibility").capitalize()}</th>
+				<th>{$_("warranty").capitalize()}</th>
+			</tr>
+			<tr>
+				<td>
+					{specs.dimensions.length} × {specs.dimensions.width} × {specs
+						.dimensions.depth}
+					<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+				</td>
+				<td
+					>{#if specs.fans != undefined && specs.fans.length > 0}
+						{#each specs.fans as fan}
+							{fan.number || 1} × {fan.size}
+							<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+						{/each}
+					{/if}
+				</td>
+				<td>
+					{#if specs.compatibility.intel.includes("1151")}
+						1151
+					{/if}
+					{#if specs.compatibility.amd.includes("AM4")}
+						AM4
+					{/if}
+				</td>
+				<td>
+					{@html warrantyText}
+				</td>
+			</tr>
+		{/if}
+		{#if product.type == "CPU Liquid Cooler"}
+			<tr>
+				<th>{$_("radiator").capitalize()}</th>
+				<th>{$_("fans").capitalize()}</th>
+				<th>{$_("compatibility").capitalize()}</th>
+				<th>{$_("warranty").capitalize()}</th>
+			</tr>
+			<tr>
+				<td>
+					{specs.radiator.size}
+					<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+				</td>
+				<td
+					>{#if specs.fans != undefined && specs.fans.length > 0}
+						{#each specs.fans as fan}
+							{fan.number || 1} × {fan.size}
+							<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+						{/each}
+					{/if}
+				</td>
+				<td>
+					{#if specs.compatibility.intel.includes("1151")}
+						1151
+					{/if}
+					{#if specs.compatibility.amd.includes("AM4")}
+						AM4
+					{/if}
+				</td>
+				<td>
+					{@html warrantyText}
+				</td>
+			</tr>
+		{/if}
 	</tbody>
 </table>
 
