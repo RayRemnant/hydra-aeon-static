@@ -262,18 +262,31 @@
 				</td>
 			</tr>
 		{/if}
-		{#if product.type == "CPU Air Cooler"}
-			<tr>
-				<th>{$_("dimensions").capitalize()}</th>
+		{#if ["CPU Air Cooler", "CPU Liquid Cooler"].includes(product.type)}
+			<tr
+				><th>
+					{#if product.type == "CPU Air Cooler"}
+						{$_("dimensions").capitalize()}
+					{/if}
+					{#if product.type == "CPU Liquid Cooler"}
+						{$_("radiator").capitalize()}
+					{/if}
+				</th>
 				<th>{$_("fans").capitalize()}</th>
 				<th>{$_("compatibility").capitalize()}</th>
 				<th>{$_("warranty").capitalize()}</th>
 			</tr>
 			<tr>
 				<td>
-					{specs.dimensions.length} × {specs.dimensions.width} × {specs
-						.dimensions.depth}
-					<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+					{#if product.type == "CPU Air Cooler"}
+						{specs.dimensions.length} × {specs.dimensions.width} × {specs
+							.dimensions.depth}
+						<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+					{/if}
+					{#if product.type == "CPU Liquid Cooler"}
+						{specs.radiator.size}
+						<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+					{/if}
 				</td>
 				<td
 					>{#if specs.fans != undefined && specs.fans.length > 0}
@@ -284,19 +297,21 @@
 					{/if}
 				</td>
 				<td>
-					{#if specs.compatibility.intel.includes("1151")}
-						1151
-					{/if}
-					{#if specs.compatibility.amd.includes("AM4")}
-						AM4
-					{/if}
+					<ul>
+						{#if specs.compatibility.intel.includes("LGA1151")}
+							<li>LGA115X</li>
+						{/if}
+						{#if specs.compatibility.amd.includes("AM4")}
+							<li>AM4</li>
+						{/if}
+					</ul>
 				</td>
 				<td>
 					{@html warrantyText}
 				</td>
 			</tr>
 		{/if}
-		{#if product.type == "CPU Liquid Cooler"}
+		<!-- {#if product.type == "CPU Liquid Cooler"}
 			<tr>
 				<th>{$_("radiator").capitalize()}</th>
 				<th>{$_("fans").capitalize()}</th>
@@ -317,8 +332,8 @@
 					{/if}
 				</td>
 				<td>
-					{#if specs.compatibility.intel.includes("1151")}
-						1151
+					{#if specs.compatibility.intel.includes("LGA1151")}
+						LGA115X
 					{/if}
 					{#if specs.compatibility.amd.includes("AM4")}
 						AM4
@@ -328,7 +343,7 @@
 					{@html warrantyText}
 				</td>
 			</tr>
-		{/if}
+		{/if} -->
 	</tbody>
 </table>
 
@@ -354,6 +369,20 @@
 		text-align: center;
 		table-layout: fixed;
 		font-size: 1rem;
+	}
+
+	:global(.specs ul) {
+		margin: 0;
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+	}
+
+	:global(.specs li) {
+		list-style-type: none;
+		margin: 0;
+		font-size: 1rem;
+		padding: 0 10%;
 	}
 
 	:global(.specs tbody > tr:first-child > :first-child) {
