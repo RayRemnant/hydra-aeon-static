@@ -7,11 +7,6 @@ export default async (functionName, { host, params, path, ...other }) => {
 	} catch (e) {
 		console.log(e);
 	}
-	/* let res = await fetch(`${process.env.SERVER_API}/cms${path}`, {
-		headers: {
-			Authorization: process.env.SERVER_API_AUTH,
-		},
-	}); */
 
 	try {
 		if (data) {
