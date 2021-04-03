@@ -344,6 +344,90 @@
 				</td>
 			</tr>
 		{/if} -->
+		{#if product.type == "PC case"}
+			<tr>
+				<th colspan="2">
+					{$_("compatibility").capitalize()}
+				</th>
+				<td colspan="2">
+					{specs.motherboard[0]}
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					{$_("dimensions").capitalize()}
+				</th>
+				<td colspan="2">
+					{specs.dimensions.length} × {specs.dimensions.width} × {specs
+						.dimensions.height}
+					<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					{$_("I/O").capitalize()}
+				</th>
+				<td colspan="2">
+					{#if specs.front.usb}
+						<span
+							>{#each Object.entries(specs.front.usb)
+								.sort()
+								.reverse() as [type, usb]}
+								{#each Object.entries(usb).sort((a, b) => b - a) as [revision, number]}
+									{number} × USB {(parseInt(revision) / 10).toFixed(1)}
+									{type != "A" ? "Type " + type : ""}<br />
+								{/each}
+							{/each}
+						</span>
+					{/if}
+					{#if specs.front.audio && specs.front.audio.jack}
+						{specs.front.audio.jack} × Jack
+					{/if}
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					{$_("slot").capitalize()}
+				</th>
+				<td colspan="2">
+					{#each Object.entries(specs["drive bays"])
+						.sort()
+						.reverse() as [type, driveBay]}
+						{driveBay.standard} × {type
+							.replace(/x/gi, '"')
+							.replace(/\+/gi, " / ")
+							.replace(/5/gi, ".5")}<br />
+					{/each}
+				</td>
+			</tr>
+			<tr>
+				<th rowspan="3">
+					{$_("fans").capitalize()}
+				</th>
+				<td>{$_("front").capitalize()}</td>
+				<td colspan="2"
+					><div class="options">
+						{#each specs.fans.top as option, index}
+							{#each Object.entries(option).sort() as [size, number]}
+								<span
+									>{number} × {size}
+									<abbr title={$_("millimeters")}>{$_("mm")}</abbr></span
+								>
+								{#if specs.fans.top.length - 1 != index}
+									<span> / </span>
+								{/if}
+							{/each}
+						{/each}
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>{$_("top").capitalize()}</td>
+			</tr>
+			<tr>
+				<td>{$_("rear").capitalize()}</td>
+			</tr>
+		{/if}
 	</tbody>
 </table>
 
@@ -383,6 +467,10 @@
 		margin: 0;
 		font-size: 1rem;
 		padding: 0 10%;
+	}
+
+	:global(.specs span) {
+		white-space: nowrap;
 	}
 
 	:global(.specs tbody > tr:first-child > :first-child) {

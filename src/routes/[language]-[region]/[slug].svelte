@@ -4,7 +4,7 @@
 	export async function preload(page) {
 		const { slug } = page.params;
 		try {
-			var data = await neoFetch(this.fetch, page);
+			var data = await neoFetch("page", { ...page });
 			//console.log(data);
 		} catch (e) {
 			console.log(e);

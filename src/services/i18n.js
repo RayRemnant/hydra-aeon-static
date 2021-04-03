@@ -62,7 +62,10 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			"coming soon": "prossimamente",
 			fans: "ventole",
 			compatibility: "compatibilità",
-			radiator: "radiatore"
+			radiator: "radiatore",
+			front: "fronte",
+			top: "sopra",
+			rear: "retro"
 		},
 	});
 	locale.set(_locale);

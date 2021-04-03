@@ -97,7 +97,7 @@
 		<!-- HOME / WELCOME -->
 		<title>{title}</title>
 		<link rel="alternate" hreflang="x-default" href="https://{host}" />
-		{#each $languages as _language}
+		<!-- {#each $languages as _language}
 			<link
 				rel="alternate"
 				hreflang={_language.code}
@@ -110,7 +110,7 @@
 					href="https://{host}/{_language.code}-{_region.code}/"
 				/>
 			{/each}
-		{/each}
+		{/each} -->
 	{/if}
 
 	<meta property="og:type" content={type} />

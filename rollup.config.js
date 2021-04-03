@@ -29,6 +29,14 @@ const aliasEntries = [
 		replacement: `${__dirname}/src/modules/errorFetch.js`,
 	},
 	{
+		find: "cms/get",
+		replacement: `${__dirname}/src/cms/get.js`,
+	},
+	{
+		find: "cms/wordpress",
+		replacement: `${__dirname}/src/cms/wordpress.js`,
+	},
+	{
 		find: "cookie",
 		replacement: `${__dirname}/src/stores/cookie.js`,
 	},
