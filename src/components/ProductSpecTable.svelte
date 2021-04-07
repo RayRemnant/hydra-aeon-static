@@ -345,8 +345,6 @@
 				</td>
 			</tr>
 		{/if} -->
-<<<<<<< Updated upstream
-=======
 		{#if product.type == "PC case"}
 			<tr>
 				<th colspan="5">
@@ -598,7 +596,6 @@
 				</td>
 			</tr> -->
 		{/if}
->>>>>>> Stashed changes
 	</tbody>
 </table>
 

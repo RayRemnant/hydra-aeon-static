@@ -62,9 +62,6 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			"coming soon": "prossimamente",
 			fans: "ventole",
 			compatibility: "compatibilità",
-<<<<<<< Updated upstream
-			radiator: "radiatore"
-=======
 			radiator: "radiatore",
 			front: "fronte",
 			top: "sopra",
@@ -78,7 +75,6 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			side: "lato",
 			included: "incluse",
 			"up to": "fino a",
->>>>>>> Stashed changes
 		},
 	});
 	locale.set(_locale);
