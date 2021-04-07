@@ -3,9 +3,9 @@
 	import errorFetch from "errorFetch";
 	export async function preload(page) {
 		const { language, region } = page.params;
-
+		page.params.slug = "info";
 		try {
-			var data = await neoFetch(this.fetch, page);
+			var data = await neoFetch("page", { ...page });
 			//console.log(data);
 		} catch (e) {
 			console.log(e);
