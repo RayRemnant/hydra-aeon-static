@@ -5,21 +5,22 @@
 
 	let { specs } = product;
 
-	let warranty = specs.warranty.registration || specs.warranty.standard;
+	let warranty = specs.warranty?.registration || specs.warranty?.standard;
 
 	if (Number.isInteger(warranty)) {
 		var warrantyText =
 			warranty > 1 ? warranty + " " + $_("years") : warranty + " " + $_("year");
+		warrantyText = specs.warranty.registration
+			? warrantyText +
+			  " <a target='_blank' rel='noreferrer' href='" +
+			  specs.warranty["registration link"] +
+			  "'>" +
+			  $_("with registration") +
+			  "</a>"
+			: warrantyText;
+	} else {
+		warrantyText = "-";
 	}
-
-	warrantyText = specs.warranty.registration
-		? warrantyText +
-		  " <a target='_blank' rel='noreferrer' href='" +
-		  specs.warranty["registration link"] +
-		  "'>" +
-		  $_("with registration") +
-		  "</a>"
-		: warrantyText;
 </script>
 
 <table class="specs">
@@ -344,6 +345,260 @@
 				</td>
 			</tr>
 		{/if} -->
+<<<<<<< Updated upstream
+=======
+		{#if product.type == "PC case"}
+			<tr>
+				<th colspan="5">
+					{$_("compatibility").capitalize()}
+				</th>
+				<td colspan="5">
+					{specs.motherboard[0]}
+				</td>
+			</tr>
+			<tr>
+				<th colspan="5">
+					{$_("dimensions").capitalize()}
+				</th>
+				<td colspan="5">
+					{specs.dimensions.length} × {specs.dimensions.width} × {specs
+						.dimensions.height}
+					<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="5">
+					{$_("I/O").capitalize()}
+				</th>
+				<td colspan="5">
+					{#if specs.io.usb}
+						<span
+							>{#each Object.entries(specs.io.usb)
+								.sort()
+								.reverse() as [type, usb]}
+								{#each Object.entries(usb).sort((a, b) => b - a) as [revision, number]}
+									{number} × USB {(parseInt(revision) / 10).toFixed(1)}
+									{type != "A" ? "Type " + type : ""}<br />
+								{/each}
+							{/each}
+						</span>
+					{/if}
+					{#if specs.io.audio && specs.io.audio.jack}
+						{specs.io.audio.jack} × Jack
+					{/if}
+				</td>
+			</tr>
+			<tr>
+				<th colspan="5">
+					{$_("slot").capitalize()}
+				</th>
+				<td colspan="5">
+					{#each Object.entries(specs["drive bays"]).sort() as [type, driveBay]}
+						{#if driveBay.standard}
+							{driveBay.standard} × {type
+								.replace(/x/gi, ".")
+								.replace(/\+/gi, " / ")}"<br />
+						{:else if driveBay.max}
+							{driveBay.max} × {type
+								.replace(/x/gi, ".")
+								.replace(/\+/gi, " / ")}" (max)<br />
+						{/if}
+					{/each}
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2" rowspan="3">{$_("clearance").capitalize()}</th>
+				<th colspan="5">{$_("GPU length").capitalize()}</th>
+				<td colspan="3"
+					>{@html specs?.cleareance?.gpu?.length
+						? specs?.cleareance?.gpu?.length +
+						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+						: "-"}</td
+				>
+			</tr>
+			<tr>
+				<th colspan="5">{$_("CPU cooler height").capitalize()}</th>
+				<td colspan="3"
+					>{@html specs?.cleareance["cpu cooler"]?.height
+						? specs?.cleareance["cpu cooler"]?.height +
+						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+						: "-"}</td
+				>
+			</tr>
+			<tr>
+				<th colspan="5">{$_("PSU length").capitalize()}</th>
+				<td colspan="3"
+					>{@html specs?.cleareance?.psu?.length
+						? specs?.cleareance?.psu?.length +
+						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+						: "-"}</td
+				>
+			</tr>
+			<tr>
+				<th colspan="10">{$_("cooling").capitalize()}</th>
+			</tr>
+			<tr>
+				<td colspan="2" />
+
+				<th colspan="2">
+					{$_("radiator").capitalize()}
+				</th>
+				<th colspan="3">
+					{$_("fans").capitalize()}
+				</th>
+				<th colspan="3">
+					{$_("included").capitalize()}
+				</th>
+			</tr>
+
+			{#each Object.entries(specs.cooling).sort() as [locationName, location]}
+				<tr>
+					<td colspan="2">{$_(locationName).capitalize()}</td>
+					<td colspan="2">
+						{@html location?.radiator?.[0]
+							? location.radiator[0] +
+							  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+							: "-"}
+					</td>
+					<td colspan="3">
+						{#if location?.fans?.layouts && location.fans.layouts.length > 0}
+							{#each location.fans.layouts as layout, index}
+								{#each Object.entries(layout).sort() as [size, number]}
+									<span
+										>{number} × {size}
+										<abbr title={$_("millimeters")}>{$_("mm")}</abbr></span
+									>
+									{#if location.fans.layouts.length - 1 != index}
+										<hr />
+									{/if}
+								{/each}
+							{/each}
+						{:else}
+							-
+						{/if}
+					</td>
+					<td colspan="3">
+						{#if location?.fans?.included && location.fans.included.length > 0}
+							{#each location.fans.included as fan}
+								{fan.number || 1} × {fan.size}
+								<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+							{/each}
+						{:else}
+							-
+						{/if}
+					</td>
+				</tr>
+			{/each}
+			<!-- <tr>
+				<td colspan="2">{$_("front").capitalize()}</td>
+				<td colspan="2">
+					{@html specs?.cooling?.front?.radiator?.[0]
+						? specs.cooling.front.radiator[0] +
+						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+						: "-"}
+				</td>
+				<td colspan="3">
+					{#if specs?.cooling?.front?.fans?.layouts && specs.cooling.front.fans.layouts.length > 0}
+						{#each specs.cooling.front.fans.layouts as layout, index}
+							{#each Object.entries(layout).sort() as [size, number]}
+								<span
+									>{number} × {size}
+									<abbr title={$_("millimeters")}>{$_("mm")}</abbr></span
+								>
+								{#if specs.cooling.front.fans.layouts.length - 1 != index}
+									<hr />
+								{/if}
+							{/each}
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
+				<td colspan="3">
+					{#if specs?.cooling?.front?.fans?.installed && specs.cooling.front.fans.installed.length > 0}
+						{#each specs?.cooling?.front?.fans?.installed || [] as fan}
+							{fan.number || 1} × {fan.size}
+							<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
+			</tr> -->
+			<!-- <tr>
+				<td colspan="2">{$_("top").capitalize()}</td>
+				<td colspan="2">
+					{@html specs?.cooling?.top?.radiator?.[0]
+						? specs.cooling.top.radiator[0] +
+						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+						: "-"}
+				</td>
+				<td colspan="3">
+					{#if specs?.cooling?.top?.fans?.layouts && specs.cooling.top.fans.layouts.length > 0}
+						{#each specs.cooling.top.fans.layouts as layout, index}
+							{#each Object.entries(layout).sort() as [size, number]}
+								<span
+									>{number} × {size}
+									<abbr title={$_("millimeters")}>{$_("mm")}</abbr></span
+								>
+								{#if specs.cooling.top.fans.layouts.length - 1 != index}
+									<hr />
+								{/if}
+							{/each}
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
+				<td colspan="3">
+					{#if specs?.cooling?.top?.fans?.installed && specs.cooling.top.fans.installed.length > 0}
+						{#each specs.cooling.top.fans.installed as fan}
+							{fan.number || 1} × {fan.size}
+							<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">{$_("rear").capitalize()}</td>
+				<td colspan="2">
+					{@html specs?.cooling?.rear?.radiator?.[0]
+						? specs.cooling.rear.radiator[0] +
+						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+						: "-"}
+				</td>
+				<td colspan="3">
+					{#if specs?.cooling?.rear?.fans?.layouts && specs.cooling.rear.fans.layouts.length > 0}
+						{#each specs.cooling.rear.fans.layouts as layout, index}
+							{#each Object.entries(layout).sort() as [size, number]}
+								<span
+									>{number} × {size}
+									<abbr title={$_("millimeters")}>{$_("mm")}</abbr></span
+								>
+								{#if specs.cooling.rear.fans.layouts.length - 1 != index}
+									<hr />
+								{/if}
+							{/each}
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
+				<td colspan="3">
+					{#if specs?.cooling?.rear?.fans?.installed && specs.cooling.rear.fans.installed.length > 0}
+						{#each specs.cooling.rear.fans.installed as fan}
+							{fan.number || 1} × {fan.size}
+							<abbr title={$_("millimeters")}>{$_("mm")}</abbr>
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
+			</tr> -->
+		{/if}
+>>>>>>> Stashed changes
 	</tbody>
 </table>
 
@@ -369,6 +624,11 @@
 		text-align: center;
 		table-layout: fixed;
 		font-size: 1rem;
+	}
+
+	:global(.specs hr) {
+		margin: 0.25em auto;
+		width: 75%;
 	}
 
 	:global(.specs ul) {
