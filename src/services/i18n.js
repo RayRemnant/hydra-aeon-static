@@ -75,6 +75,7 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			side: "lato",
 			included: "incluse",
 			"up to": "fino a",
+			bottom: "sotto",
 		},
 	});
 	locale.set(_locale);
