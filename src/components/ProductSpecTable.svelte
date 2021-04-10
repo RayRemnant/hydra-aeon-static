@@ -365,9 +365,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th colspan="5">
-					{$_("I/O").capitalize()}
-				</th>
+				<th colspan="5"> I/O </th>
 				<td colspan="5">
 					{#if specs.io.usb}
 						<span
@@ -395,11 +393,11 @@
 						{#if driveBay.standard}
 							{driveBay.standard} × {type
 								.replace(/x/gi, ".")
-								.replace(/\+/gi, " / ")}"<br />
+								.replace(/\+/gi, '" / ')}"<br />
 						{:else if driveBay.max}
 							{driveBay.max} × {type
 								.replace(/x/gi, ".")
-								.replace(/\+/gi, " / ")}" (max)<br />
+								.replace(/\+/gi, '" / ')}" (max)<br />
 						{/if}
 					{/each}
 				</td>
@@ -407,30 +405,57 @@
 			<tr>
 				<th colspan="2" rowspan="3">{$_("clearance").capitalize()}</th>
 				<th colspan="5">{$_("GPU length").capitalize()}</th>
-				<td colspan="3"
-					>{@html specs?.cleareance?.gpu?.length
-						? specs?.cleareance?.gpu?.length +
-						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
-						: "-"}</td
-				>
+				<td colspan="3">
+					{#if specs?.cleareance?.gpu && Array.isArray(specs.cleareance.gpu) && specs.cleareance.gpu.length}
+						{#each specs?.cleareance?.gpu as dimensions, index}
+							{@html dimensions?.length
+								? dimensions?.length +
+								  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+								: "-"}
+							{#if specs.cleareance.gpu.length - 1 != index}
+								<hr />
+							{/if}
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
 			</tr>
 			<tr>
 				<th colspan="5">{$_("CPU cooler height").capitalize()}</th>
-				<td colspan="3"
-					>{@html specs?.cleareance["cpu cooler"]?.height
-						? specs?.cleareance["cpu cooler"]?.height +
-						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
-						: "-"}</td
-				>
+				<td colspan="3">
+					{#if specs?.cleareance?.["cpu cooler"] && Array.isArray(specs.cleareance["cpu cooler"]) && specs.cleareance["cpu cooler"].length}
+						{#each specs?.cleareance?.["cpu cooler"] as dimensions, index}
+							{@html dimensions?.height
+								? dimensions?.height +
+								  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+								: "-"}
+							{#if specs.cleareance["cpu cooler"].length - 1 != index}
+								<hr />
+							{/if}
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
 			</tr>
 			<tr>
 				<th colspan="5">{$_("PSU length").capitalize()}</th>
-				<td colspan="3"
-					>{@html specs?.cleareance?.psu?.length
-						? specs?.cleareance?.psu?.length +
-						  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
-						: "-"}</td
-				>
+				<td colspan="3">
+					{#if specs?.cleareance?.psu && Array.isArray(specs?.cleareance?.psu) && specs.cleareance.psu.length}
+						{#each specs.cleareance.psu as dimensions, index}
+							{@html dimensions?.length
+								? dimensions?.length +
+								  ` <abbr title=${$_("millimeters")}>${$_("mm")}</abbr>`
+								: "-"}
+							{#if specs.cleareance.psu.length - 1 != index}
+								<hr />
+							{/if}
+						{/each}
+					{:else}
+						-
+					{/if}
+				</td>
 			</tr>
 			<tr>
 				<th colspan="10">{$_("cooling").capitalize()}</th>
