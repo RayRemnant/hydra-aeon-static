@@ -1,4 +1,7 @@
 <script>
+	import { _ } from "svelte-i18n";
+	import { schema } from "schema";
+
 	export let language, region, slug, data;
 	let category = data;
 
@@ -6,7 +9,6 @@
 	//how to
 	//reviews
 
-	import { schema } from "schema";
 	$: {
 		schema.update({
 			breadcrumbs: [
@@ -15,6 +17,10 @@
 			],
 		});
 	}
+
+	category.meta.title =
+		category.meta.title ||
+		category.title + " - " + $_("the complete guide").capitalize();
 
 	import Meta from "Meta";
 	import BuyingGuides from "BuyingGuides";
