@@ -54,10 +54,6 @@ const prefetch = async () => {
 	return true;
 };
 
-let x = () => {
-	return "lmao";
-};
-
 const getLanguagesRegions = async () => {
 	let languages = process.env.LANGUAGES
 		? JSON.parse(process.env.LANGUAGES)
@@ -565,81 +561,86 @@ const getPost = async ({
 		}
 
 		try {
-			let { query, text, blockType } = JSON.parse(block);
-
-			query.region = region;
-
-			query.project = {};
-
-			//console.log(query);
-			let result = await axios.post(
-				process.env.SERVER_API + "/db/search",
-				{ ...query },
-				{
-					headers: {
-						Authorization: process.env.SERVER_API_AUTH,
-					},
-				}
-			);
-
-			if ((result.status = 200)) {
-				var data = result.data;
-			}
-
-			if (!data.length || data.length < 1) {
-				console.log("TEXT SEARCH NO RESULTS - " + JSON.stringify(query));
-				continue;
-			}
-
-			let [document] = data;
-			delete document._id;
+			var { query, text, blockType } = JSON.parse(block);
 
 			try {
-				let imageDefault = document?.image?.default;
-				document.image = document?.image[imageDefault][0];
-				if (imageDefault == "fallback") {
-					document.image.types = ["jpg"];
+				query.region = region;
+
+				query.project = {};
+
+				//console.log(query);
+				let result = await axios.post(
+					process.env.SERVER_API + "/db/search",
+					{ ...query },
+					{
+						headers: {
+							Authorization: process.env.SERVER_API_AUTH,
+						},
+					}
+				);
+
+				if ((result.status = 200)) {
+					var data = result.data;
 				}
-			} catch (e) {
-				//has no image
-				document.image = false;
-			}
 
-			if (text) {
-				let product = {
-					brand: document.name.brand,
-					name: document.name.full,
-					warranty:
-						document?.specs?.warranty.registration ||
-						document?.specs?.warranty.standard,
-					core: document?.specs?.core,
-					thread: document?.specs?.thread,
-					socket: document?.specs?.socket,
-				};
+				if (!data.length || data.length < 1) {
+					console.log("TEXT SEARCH NO RESULTS - " + JSON.stringify(query));
+					continue;
+				}
+
+				let [document] = data;
+				delete document._id;
+
 				try {
-					//TO-DO: maybe replace any {<variable>} left with something that hides doesn't seem so obviously bugged — or alert in case this condition happens
-					for (let property in product) {
-						if (!product[property]) {
-							continue;
-						}
-						let toReplace = new RegExp("\\${" + property + "}", "gi");
-
-						text = text.replace(toReplace, product[property]);
+					let imageDefault = document?.image?.default;
+					document.image = document?.image[imageDefault][0];
+					if (imageDefault == "fallback") {
+						document.image.types = ["jpg"];
 					}
 				} catch (e) {
-					console.log(e);
+					//has no image
+					document.image = false;
 				}
 
-				document.text = text;
+				if (text) {
+					let product = {
+						brand: document.name.brand,
+						name: document.name.full,
+						warranty:
+							document?.specs?.warranty?.registration ||
+							document?.specs?.warranty?.standard,
+						core: document?.specs?.core,
+						thread: document?.specs?.thread,
+						socket: document?.specs?.socket,
+					};
+
+					try {
+						//TO-DO: maybe replace any {<variable>} left with something that hides doesn't seem so obviously bugged — or alert in case this condition happens
+						for (let property in product) {
+							if (!product[property]) {
+								continue;
+							}
+							let toReplace = new RegExp("\\${" + property + "}", "gi");
+
+							text = text.replace(toReplace, product[property]);
+						}
+					} catch (e) {
+						console.log(e);
+					}
+
+					document.text = text;
+				}
+
+				document.blockType = blockType;
+
+				post.content.push(document);
+
+				//console.log(JSON.stringify(context));
+
+				//console.log(JSON.stringify(document));
+			} catch (e) {
+				console.log(e);
 			}
-
-			document.blockType = blockType;
-
-			post.content.push(document);
-
-			//console.log(JSON.stringify(context));
-
-			//console.log(JSON.stringify(document));
 		} catch (e) {
 			//console.log(e);
 			post.content.push({
@@ -664,7 +665,6 @@ export default {
 	getCategory,
 	getPostList,
 	getPost,
-	x,
 };
 /* request({
 	contentType: "posts",
