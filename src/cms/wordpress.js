@@ -39,20 +39,23 @@ const { languagesAll, countries } = require("countries-list");
 const countriesAll = countries;
 const i18nCountries = require("i18n-iso-countries");
 
-const prefetch = async () => {
+(async () => {
 	await axios({ url: "pages", baseURL: wordpressHost });
 	await axios({ url: "categories", baseURL: wordpressHost });
 	await axios({ url: "tags", baseURL: wordpressHost });
 	await axios({ url: "posts", baseURL: wordpressHost });
-	await axios.post(
-		process.env.PANOPTES_HOST + "image/generateAll",
-		{
-			prefix: "content/",
-		},
-		{ headers: { Authorization: process.env.PANOPTES_BASIC_AUTH } }
-	);
-	return true;
-};
+	try {
+		await axios.post(
+			process.env.PANOPTES_HOST + "image/generateAll",
+			{
+				prefix: "content/",
+			},
+			{ headers: { Authorization: process.env.PANOPTES_BASIC_AUTH } }
+		);
+	} catch (e) {
+		console.log("PANOPTES UNABLE TO CONNECT");
+	}
+})();
 
 const getLanguagesRegions = async () => {
 	let languages = process.env.LANGUAGES
@@ -655,7 +658,6 @@ const getPost = async ({
 };
 
 export default {
-	prefetch,
 	getLanguagesRegions,
 	get,
 	getMenu,
