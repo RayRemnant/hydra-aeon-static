@@ -257,6 +257,11 @@ a {
 	outline: none;
 }
 
+table {
+	width: 100%;
+	text-align: center;
+}
+
 abbr {
 	cursor: help;
 }
