@@ -76,6 +76,10 @@ function setupI18n({ withLocale: _locale } = { withLocale: "en" }) {
 			included: "incluse",
 			"up to": "fino a",
 			bottom: "sotto",
+			capacity: "capacità",
+			latency: "latenza",
+			"the complete guide": "la guida completa",
+			slot: "slot",
 		},
 	});
 	locale.set(_locale);
