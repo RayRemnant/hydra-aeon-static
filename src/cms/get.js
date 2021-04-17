@@ -1,10 +1,5 @@
 import wordpress from "cms/wordpress";
 
-const prefetch = async () => {
-	await wordpress.prefetch();
-	return true;
-};
-
 const languages = async () => {
 	try {
 		return await wordpress.getLanguagesRegions();
@@ -95,4 +90,4 @@ const blogContent = async (params) => {
 	);
 };
 
-export default { prefetch, languages, menu, home, page, blog, blogContent };
+export default { languages, menu, home, page, blog, blogContent };
