@@ -263,6 +263,29 @@
 				</td>
 			</tr>
 		{/if}
+		{#if product.type == "RAM"}
+			<tr>
+				<th>{$_("capacity").capitalize()}</th>
+				<th>{$_("frequency").capitalize()}</th>
+				<th>{$_("latency").capitalize()}</th>
+				<th>{$_("warranty").capitalize()}</th>
+			</tr>
+			<tr>
+				<td>
+					{specs.modules || 1} × {specs.capacity}
+					<abbr title="GigaByte">GB</abbr>
+				</td>
+				<td>
+					{specs.frequency} <abbr title="MegaHertz">MHz</abbr>
+				</td>
+				<td>
+					{specs?.latency?.[0] || "-"}
+				</td>
+				<td>
+					{specs.type}
+				</td>
+			</tr>
+		{/if}
 		{#if ["CPU Air Cooler", "CPU Liquid Cooler"].includes(product.type)}
 			<tr
 				><th>
