@@ -4,18 +4,6 @@ import compression from "compression";
 import * as sapper from "@sapper/server";
 const axios = require("axios");
 
-var http = require("http");
-const serverApi = new URL(process.env.SERVER_API);
-
-http
-	.request({
-		hostname: serverApi.hostname,
-		path: "/cms/prefetch",
-		port: serverApi.port,
-		headers: { Authorization: process.env.SERVER_API_AUTH },
-	})
-	.end();
-
 const { PORT, NODE_ENV } = process.env;
 
 const dev = NODE_ENV === "development";
