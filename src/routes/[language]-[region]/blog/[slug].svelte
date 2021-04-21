@@ -7,7 +7,7 @@
 		const { language, region, slug } = page.params;
 
 		try {
-			var data = await neoFetch("blogContent", page);
+			var data = await neoFetch(this.fetch, page);
 			//console.log(data);
 		} catch (e) {
 			console.log(e);

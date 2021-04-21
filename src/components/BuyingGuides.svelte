@@ -2,8 +2,8 @@
 	export let language,
 		region,
 		title,
-		cardinal = {};
-	/* posts; */
+		cardinal = {},
+		posts;
 
 	import { _ } from "svelte-i18n";
 	import Figure from "Figure";
