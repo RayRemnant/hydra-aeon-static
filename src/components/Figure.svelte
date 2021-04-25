@@ -9,12 +9,12 @@
 		height = undefined,
 		alt,
 		directory = "",
-		name,
+		name = "placeholder",
 		types,
 		loading = undefined;
 
-	if (directory && directory == "static") {
-		directory = mediaHostUrl + directory + "/";
+	if ((directory && directory == "static") || name == "placeholder") {
+		directory = mediaHostUrl + "static/";
 	}
 
 	//TO-DO: implement jpeg testing through reversing of the array order

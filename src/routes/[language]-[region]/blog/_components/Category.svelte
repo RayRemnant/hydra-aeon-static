@@ -23,7 +23,7 @@
 		category.title + " - " + $_("the complete guide").capitalize();
 
 	import Meta from "Meta";
-	import BuyingGuides from "BuyingGuides";
+	import BoxLinks from "BoxLinks";
 </script>
 
 <Meta
@@ -51,5 +51,7 @@
 		{@html category.content}
 	</section>
 
-	<BuyingGuides {language} {region} {...category.buyingGuides} />
+	{#each Object.entries(category.tags) as [index, tag]}
+		<BoxLinks {language} {region} {...tag} />
+	{/each}
 </article>

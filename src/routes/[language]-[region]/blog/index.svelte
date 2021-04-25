@@ -1,4 +1,5 @@
 <script context="module">
+	import { _ } from "svelte-i18n";
 	import neoFetch from "neoFetch";
 	import errorFetch from "errorFetch";
 	export async function preload(page, session) {
@@ -14,8 +15,9 @@
 
 		return { language, region, ...data };
 	}
+
 	import Meta from "Meta";
-	import BuyingGuides from "BuyingGuides";
+	import BoxLinks from "BoxLinks";
 </script>
 
 <script>
@@ -36,8 +38,13 @@
 				>
 				<hr />
 			</h1>
-
-			<BuyingGuides {language} {region} {...category.buyingGuides} />
+			{#if Object.keys(category.tags).length > 0}
+				{#each Object.entries(category.tags) as [index, tag]}
+					<BoxLinks {language} {region} {...tag} />
+				{/each}
+			{:else}
+				<p>{$_("coming soon").capitalize()}!</p>
+			{/if}
 		</article>
 	{/each}
 {/if}
@@ -71,6 +78,11 @@
 		width: 100%;
 		font-size: 2.25rem;
 		text-align: center;
+		margin: 0;
+	}
+
+	:global(.blog-category > p) {
+		margin-top: 0.5rem;
 	}
 
 	:global(.dark .blog-category) {

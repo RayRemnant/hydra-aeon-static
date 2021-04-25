@@ -70,8 +70,8 @@ const aliasEntries = [
 		replacement: `${__dirname}/src/components/Figure.svelte`,
 	},
 	{
-		find: "BuyingGuides",
-		replacement: `${__dirname}/src/components/BuyingGuides.svelte`,
+		find: "BoxLinks",
+		replacement: `${__dirname}/src/components/BoxLinks.svelte`,
 	},
 	{
 		find: "ProductSpecTable",
