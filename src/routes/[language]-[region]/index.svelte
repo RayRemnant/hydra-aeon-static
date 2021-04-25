@@ -18,6 +18,7 @@
 
 		return { language, region, ...data };
 	}
+
 	/* import { schema } from "schema";
 	schema.update({
 		breadcrumbs: [{ name: "Home", path: "/home" }],
