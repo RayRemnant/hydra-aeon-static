@@ -3,7 +3,10 @@
 
 	let post = data;
 
-	post.time.modified = new Date(timestamp).toISOString().substring(0, 19) + "Z";
+	if (post.group == "buying-guides") {
+		post.time.modified =
+			new Date(timestamp).toISOString().substring(0, 19) + "Z";
+	}
 
 	import { schema } from "schema";
 	$: {
@@ -44,25 +47,29 @@
 </nav>
 
 <svelte:head>
-	<script src="/blogTimeUpdated.js"></script>
+	{#if post.group == "buying-guides"}
+		<script src="/blogTimeUpdated.js"></script>
+	{/if}
 </svelte:head>
 
 <article class="text">
 	<h1>{post.title}</h1>
-	<p id="time-updated">
-		<span>{$_(`updated on`)}</span>
-		<time datetime={post.time.modified}>
-			{new Intl.DateTimeFormat(`${language}-${region}`, {
-				hour: "numeric",
-				minute: "numeric",
-				year: "numeric",
-				month: "long",
-				day: "numeric",
-				timeZone: "UTC",
-				timeZoneName: "short",
-			}).format(Date.parse(post.time.modified))}</time
-		>
-	</p>
+	{#if post.group == "buying-guides"}
+		<p id="time-updated">
+			<span>{$_(`updated on`)}</span>
+			<time datetime={post.time.modified}>
+				{new Intl.DateTimeFormat(`${language}-${region}`, {
+					hour: "numeric",
+					minute: "numeric",
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+					timeZone: "UTC",
+					timeZoneName: "short",
+				}).format(Date.parse(post.time.modified))}</time
+			>
+		</p>
+	{/if}
 	{#each post.content as box, i}
 		{#if box.html == undefined}
 			<PostProduct {region} product={box} />
