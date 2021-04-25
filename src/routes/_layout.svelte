@@ -4,7 +4,7 @@
 	import { languages } from "store";
 	export async function preload(page) {
 		try {
-			languages.set(await neoFetch("languages", page));
+			languages.set(await neoFetch(this.fetch, page, "/languages"));
 		} catch (e) {
 			return errorFetch(this, e);
 		}

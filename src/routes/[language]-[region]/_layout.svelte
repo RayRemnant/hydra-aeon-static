@@ -6,10 +6,29 @@
 		let { language, region } = page.params;
 		setupI18n({ withLocale: language });
 
+		/* if (path == "/") {
+			console.log("PATH IS /");
+			language = "en";
+			region = "it";
+		}
+
+		if (
+			!path.includes(".") &&
+			path.charAt(path.length - 1) != "/" &&
+			path.length > 1
+		) {
+			console.log("redirecting...");
+			this.redirect(301, path + "/");
+		} */
+
 		try {
 			//TO-DO: provide less data when languages become a lot
 			/* 	var { languages } = await neoFetch(this.fetch, "/languages"); */
-			var { menu } = await neoFetch("menu", { ...page, name: "footer" });
+			var { menu } = await neoFetch(
+				this.fetch,
+				page,
+				`/${language}-${region}/menu/footer`
+			);
 		} catch (e) {
 			return errorFetch(this, e);
 		}

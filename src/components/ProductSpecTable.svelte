@@ -690,10 +690,6 @@
 		padding: 0 10%;
 	}
 
-	:global(.specs span) {
-		white-space: nowrap;
-	}
-
 	:global(.specs tbody > tr:first-child > :first-child) {
 		border-radius: 0.5rem 0 0 0;
 	}

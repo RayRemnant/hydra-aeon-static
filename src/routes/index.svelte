@@ -19,10 +19,7 @@
 	const title = "Omni Atlas | Welcome";
 </script>
 
-<Meta
-	{title}
-	description="Welcome to Omni Atlas, a new way of doing information."
-/>
+<Meta {title} description="Welcome to Omni Atlas, a new way of doing information." />
 
 <main>
 	<article class="welcome-page">

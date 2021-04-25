@@ -3,7 +3,7 @@
   "description": "",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev --port $PORT",
+    "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy --entry \"/ /404\" --timeout 999999 --host www.omni-atlas.com",
     "postexport": "mv __sapper__/export/404/index.html __sapper__/export/404.html && css-minify -d static/ -o __sapper__/export/ && rm __sapper__/export/global.css && mv __sapper__/export/global.min.css __sapper__/export/global.css",
@@ -14,10 +14,7 @@
     "postinstall": "npm update sapper"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "compression": "^1.7.1",
-    "countries-list": "^2.6.1",
-    "i18n-iso-countries": "^6.6.0",
     "polka": "1.0.0-next.11",
     "sirv": "^1.0.10",
     "svelte-i18n": "^3.3.0"
