@@ -89,6 +89,7 @@
 
 		color: #fff;
 		transition: 0.33s ease background-color;
+		font-weight: bold;
 	}
 
 	:global(.product .buy-button:hover) {
