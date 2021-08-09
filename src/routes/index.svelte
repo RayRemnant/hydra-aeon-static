@@ -92,6 +92,20 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		width: fit-content;
+		width: -moz-fit-content;
+		margin: auto;
+
+		padding: 0.5rem;
+		border-radius: 0.75rem;
+	}
+
+	:global(.dark .welcome-page a) {
+		background-color: #555;		
+	}
+
+	:global(.light .welcome-page a) {
+		background-color: #eee;		
 	}
 
 	:global(.welcome-page img) {
