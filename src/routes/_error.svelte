@@ -13,6 +13,7 @@
 </svelte:head>
 
 <main class="error">
+	<a href="/">
 	<Figure
 		directory="static"
 		name="omni-atlas-logo"
@@ -20,14 +21,27 @@
 		alt="Omni Atlas Logo"
 		height="123"
 	/>
+</a>
 	<br />
 
 	{#if status == 404}
 		<h1>404 - Not Found</h1>
-		<p>Sorry, that page doesn't exist!</p>
+		<Figure
+		name="404"
+		height="750"
+		alt="404"
+		directory="static"
+		types={["webp", "png"]}
+	/>
 	{:else}
 		<h1>Oops, something went wrong.</h1>
-		<p>Try reloading the page!</p>
+		<Figure
+		name="500"
+		height="750"
+		alt="500"
+		directory="static"
+		types={["webp", "png"]}
+	/>
 	{/if}
 
 	{#if dev && error.stack}
@@ -35,7 +49,7 @@
 		<pre>{error.stack}</pre>
 	{/if}
 
-	<a class="welcome-link" href="/">Back to welcome page</a>
+		<a class="welcome-link" href="/">Back to Welcome Page</a>
 </main>
 
 <footer>
@@ -48,9 +62,19 @@
 	}
 
 	:global(.error .welcome-link) {
-		display: block;
-		margin-top: 3rem;
-		font-size: 2rem;
-		color: #5090ff;
+		display: inline-block;
+		margin: auto;
+		text-align: center;
+		padding: 1rem 2.5%;
+		border-radius: 0.5rem;
+
+		color: #fff;
+		transition: 0.33s ease background-color;
+		font-weight: bold;
+		background-color:  var(--accent-color);
+	}
+
+	:global(.error .welcome-link:hover) {
+		background-color: var(--accent-color_2);
 	}
 </style>
