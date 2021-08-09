@@ -83,7 +83,7 @@
 		width: 100%;
 		height: 6rem;
 		object-fit: contain;
-		margin: 4.5rem 0;
+		margin: 3.5rem 0 5rem 0;
 	}
 
 	:global(.home-story) {

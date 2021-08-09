@@ -92,6 +92,7 @@
 		</li>
 	</ul>
 </nav>
+<hr/>
 
 <style>
 	:global(header.asleep li) {
@@ -154,6 +155,11 @@
 	:global(header [aria-current] span::after) {
 		/* background-color: #7880ff; */
 		background-color: var(--accent-color);
+	}
+
+	:global(header hr) {
+		margin: 0.75rem auto 0 auto;
+		width: 10%;
 	}
 
 	/* DESKTOP */
@@ -251,6 +257,10 @@
 
 		:global(.light header nav) {
 			background-color: #eee;
+		}
+
+		:global(header hr) {
+			display: none;
 		}
 	}
 
