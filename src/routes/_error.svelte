@@ -14,33 +14,33 @@
 
 <main class="error">
 	<a href="/">
-	<Figure
-		directory="static"
-		name="omni-atlas-logo"
-		types={["png", "webp"]}
-		alt="Omni Atlas Logo"
-		height="123"
-	/>
-</a>
+		<Figure
+			directory="static"
+			name="omni-atlas-logo"
+			types={["png", "webp"]}
+			alt="Omni Atlas Logo"
+			height="123"
+		/>
+	</a>
 	<br />
 
 	{#if status == 404}
 		<h1>404 - Not Found</h1>
 		<Figure
 		name="404"
-		height="750"
 		alt="404"
 		directory="static"
-		types={["webp", "png"]}
+		types={["png", "webp"]}
+		classes="illustration"
 	/>
 	{:else}
 		<h1>Oops, something went wrong.</h1>
 		<Figure
 		name="500"
-		height="750"
 		alt="500"
 		directory="static"
-		types={["webp", "png"]}
+		types={["png", "webp"]}
+		classes="illustration"
 	/>
 	{/if}
 
@@ -72,6 +72,10 @@
 		transition: 0.33s ease background-color;
 		font-weight: bold;
 		background-color:  var(--accent-color);
+	}
+
+	:global(.error .illustration){
+		margin: 5rem 0;
 	}
 
 	:global(.error .welcome-link:hover) {
