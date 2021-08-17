@@ -38,7 +38,11 @@
       "permanent": true
     },
     {
-      "source": "/page(.*)",
+      "source": "/page/(.*)",
+      "destination": "/it-it/blog/"
+    },
+    {
+      "source": "it-it/blog/page(.*)",
       "destination": "/it-it/blog/"
     }
   ]
