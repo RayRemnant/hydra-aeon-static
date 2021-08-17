@@ -5,15 +5,23 @@
     { "source": "/it-it/credits/", "destination": "/it-it/crediti/" },
     {
       "source": "/it-it/blog/migliore-scheda-madre/",
-      "destination": "/it-it/blog/migliore-scheda-madre-pc/"
+      "destination": "/it-it/blog/migliore-scheda-madre-pc/",
+      "permanent": true
+    },
+    {
+      "source": "/it-it/blog/miglior-processore/",
+      "destination": "/it-it/blog/miglior-processore-pc/",
+      "permanent": true
     },
     {
       "source": "/it-it/blog/come-assemblare-un-pc/",
-      "destination": "/it-it/blog/come-assemblare-pc/"
+      "destination": "/it-it/blog/come-assemblare-pc/",
+      "permanent": true
     },
     {
       "source": "/it-it/blog/hard-disk-interno/",
-      "destination": "/it-it/blog/miglior-hard-disk/"
+      "destination": "/it-it/blog/miglior-hard-disk/",
+      "permanent": true
     },
     {
       "source": "/it-it/blog/contatta/",
@@ -21,11 +29,17 @@
     },
     {
       "source": "/miglior-ssd/",
-      "destination": "/it-it/blog/miglior-ssd/"
+      "destination": "/it-it/blog/miglior-ssd/",
+      "permanent": true
     },
     {
       "source": "/hard-disk-interno/",
-      "destination": "/it-it/blog/miglior-hard-disk/"
+      "destination": "/it-it/blog/miglior-hard-disk/",
+      "permanent": true
+    },
+    {
+      "source": "/page(.*)",
+      "destination": "/it-it/blog/"
     }
   ]
 }
