@@ -1,7 +1,31 @@
 {
-	"trailingSlash": true,
-	"redirects": [
-		{ "source": "/it-it/story/", "destination": "/it-it/storia/" },
-		{ "source": "/it-it/credits/", "destination": "/it-it/crediti/" }
-	   ]
-   }
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/it-it/story/", "destination": "/it-it/storia/" },
+    { "source": "/it-it/credits/", "destination": "/it-it/crediti/" },
+    {
+      "source": "/it-it/blog/migliore-scheda-madre/",
+      "destination": "/it-it/blog/migliore-scheda-madre-pc/"
+    },
+    {
+      "source": "/it-it/blog/come-assemblare-un-pc/",
+      "destination": "/it-it/blog/come-assemblare-pc/"
+    },
+    {
+      "source": "/it-it/blog/hard-disk-interno/",
+      "destination": "/it-it/blog/miglior-hard-disk/"
+    },
+    {
+      "source": "/it-it/blog/contatta/",
+      "destination": "/it-it/info/"
+    },
+    {
+      "source": "/miglior-ssd/",
+      "destination": "/it-it/blog/miglior-ssd/"
+    },
+    {
+      "source": "/hard-disk-interno/",
+      "destination": "/it-it/blog/miglior-hard-disk/"
+    }
+  ]
+}
