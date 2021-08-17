@@ -42,7 +42,7 @@
       "destination": "/it-it/blog/"
     },
     {
-      "source": "it-it/blog/page/(.*)",
+      "source": "/it-it/blog/page/(.*)",
       "destination": "/it-it/blog/"
     }
   ]
